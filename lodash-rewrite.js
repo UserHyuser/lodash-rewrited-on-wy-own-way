@@ -46,4 +46,10 @@ function difference(arr1, arr2) {
 /*console.log(difference([2, 1], [2, 3, 5]));
 console.log(_.difference([2, 1], [2, 3, 5]));*/
 
-
+// delete first n elements in Array
+function drop(arr, n) {
+    let drop = n === undefined ? 1 : parseInt(n);
+    return  arr.slice(drop, arr.length);
+}
+/*console.log(_.drop([1, 2, 3], 2));
+console.log(drop([1, 2, 3], 2));*/
