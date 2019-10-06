@@ -51,5 +51,13 @@ function drop(arr, n) {
     let drop = n === undefined ? 1 : parseInt(n);
     return  arr.slice(drop, arr.length);
 }
-/*console.log(_.drop([1, 2, 3], 2));
-console.log(drop([1, 2, 3], 2));*/
+/*console.log(_.drop([1, 2, 3], 5));
+console.log(drop([1, 2, 3], 5));*/
+
+// delete from the end
+function dropRight(arr, n) {
+    let drop = n === undefined ? 1 : parseInt(n);
+    return  arr.slice(0, drop > arr.length ? 0 : arr.length - drop);
+}
+console.log(_.dropRight([1, 2, 3], 5));
+console.log(dropRight([1, 2, 3], 5));
