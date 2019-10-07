@@ -26,4 +26,21 @@ function findMissingLetter(array)
         if (array[i].toString().charCodeAt(0) !== tmp + i) return String.fromCharCode(tmp + i)
     }
 }
-console.log(findMissingLetter(['a','b','c','d','f']));
+// console.log(findMissingLetter(['a','b','c','d','f']));
+
+/*Given two integers a and b, which can be positive or negative, find the sum of all the numbers
+between including them too and return it. If the two numbers are equal return a or b.*/
+function GetSum( a,b )
+{
+    if (a === b) return a; else {
+        let min,max; let out = 0;
+        if (a < b) {min = a; max = b;} else {min = b; max = a}
+        out = 0;
+
+        for (let i = 0; i < Math.abs(max - min); i++){
+            out += max - i;
+        }
+        return out + min;
+    }
+}
+console.log(GetSum(0, 1));
