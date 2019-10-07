@@ -59,5 +59,6 @@ function dropRight(arr, n) {
     let drop = n === undefined ? 1 : parseInt(n);
     return  arr.slice(0, drop > arr.length ? 0 : arr.length - drop);
 }
-console.log(_.dropRight([1, 2, 3], 5));
-console.log(dropRight([1, 2, 3], 5));
+/*console.log(_.dropRight([1, 2, 3], 5));
+console.log(dropRight([1, 2, 3], 5));*/
+
