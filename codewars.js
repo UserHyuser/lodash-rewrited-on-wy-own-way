@@ -44,3 +44,57 @@ function GetSum( a,b )
     }
 }
 console.log(GetSum(0, 1));
+
+function noSpace(str) {
+    return str.split(' ').join('')
+}
+//console.log(noSpace("2354 346675 fdghg"));
+
+//Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any
+// elements with the same value next to each other and preserving the original order of elements.
+var uniqueInString=function(iterable){
+    //your code here - remember iterable can be a string or an array
+    let out = [];
+    for (let i = 0; i < iterable.length; i++){
+        if (iterable.indexOf(iterable[i]) === i) {
+            out.push(iterable[i]);
+        }
+        console.log(iterable.indexOf(iterable[i]))
+    }
+    return out;
+};
+//console.log(uniqueInString('AAAABBBCCDAABBB'))
+
+var uniqueInOrder=function(iterable){
+    //your code here - remember iterable can be a string or an array
+    if (!iterable) return [];
+    let out = [];
+    out[0] = iterable[0];
+    for (let i = 1; i < iterable.length; i++){
+        if (iterable[i] !== iterable[i-1]) {
+            out.push(iterable[i]);
+            while (iterable[i] === iterable[i-1]){
+                i++;
+            }
+        }
+    }
+    return out;
+};
+// console.log(uniqueInOrder('AAAABBBCCDAABBB'))
+/*In this kata you need to check the provided array (x) for good ideas 'good' and bad ideas 'bad'.
+If there are one or two good ideas, return 'Publish!', if there are more than 2 return 'I smell a series!'.
+If there are no good ideas, as is often the case, return 'Fail!'.*/
+function well(x){
+    let out = {
+        good : 0,
+        bad : 0
+    };
+    for (let i = 0; i< x.length; i++){
+      if (x[i] === 'good') {
+          out.good++;
+          if (out.good > 2) return 'I smell a series!'
+      }
+    }
+    return out.good >= 1 ? 'Publish!' : 'Fail!'
+}
+
