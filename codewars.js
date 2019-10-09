@@ -113,7 +113,27 @@ function getMiddle(s)
     if (s.length % 2 === 0){
         return s[~~((s.length - 1) / 2)] + s[~~((s.length - 1) / 2) + 1]
     } else {
-        return s[(~~(s.length - 1)) / 2]
+        return s[(s.length - 1) / 2]
     }
 }
 
+/*Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed
+(Just like the name of this Kata). Strings passed in will consist of only letters and spaces.
+Spaces will be included only when more than one word is present.*/
+function spinWords(str){
+    str = str.split(' ');
+    console.log(str);
+    let out = [];
+    for (let i = 0; i < str.length; i++){
+        if(str[i].length >= 5){
+            let tmp = '';
+            for (let j = str[i]; j > 0; j++){
+                tmp += str[i];
+            }
+            out.push(tmp)
+        }
+        out.push(str[i]);
+    }
+    return out.join(' ');
+}
+console.log(spinWords('Welcome'));
