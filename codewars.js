@@ -150,3 +150,13 @@ var countBits = function(n) {
     }
     return out;
 };
+
+function validParentheses(parens) {
+    let opened = 0, closed = 0;
+    for (let i = 0; i< parens.length; i++){
+        parens[i] === '(' ? opened++ : closed++;
+        if (closed > opened) return false;
+    }
+    return opened === closed;
+}
+console.log(validParentheses("())(()"));
