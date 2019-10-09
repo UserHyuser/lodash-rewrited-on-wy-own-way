@@ -122,18 +122,18 @@ function getMiddle(s)
 Spaces will be included only when more than one word is present.*/
 function spinWords(str){
     str = str.split(' ');
-    console.log(str);
     let out = [];
-    for (let i = 0; i < str.length; i++){
-        if(str[i].length >= 5){
+    str.forEach(function (item, i, str) {
+        if(item.length >= 5){
             let tmp = '';
-            for (let j = str[i]; j > 0; j++){
-                tmp += str[i];
+            for (let j = item.length - 1; j >= 0; j--){
+                tmp += item[j];
             }
             out.push(tmp)
+        } else {
+            out.push(item);
         }
-        out.push(str[i]);
-    }
+    });
     return out.join(' ');
 }
 console.log(spinWords('Welcome'));
