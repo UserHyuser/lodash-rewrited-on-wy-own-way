@@ -136,4 +136,17 @@ function spinWords(str){
     });
     return out.join(' ');
 }
-console.log(spinWords('Welcome'));
+// console.log(spinWords('Welcome'));
+/*
+*Write a function that takes an integer as input, and returns the number of bits that are equal to one in the binary representation of that number.
+You can guarantee that input is non-negative. */
+var countBits = function(n) {
+    let out = 0;
+    while (n){
+        if (n % 2 === 1) {
+            out++;
+        }
+        n = ~~(n/2)
+    }
+    return out;
+};
