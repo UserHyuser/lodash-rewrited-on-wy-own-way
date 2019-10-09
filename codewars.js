@@ -105,9 +105,15 @@ If the parameter is itself not a perfect square, than -1 should be returned. You
 function findNextSquare(sq) {
     // Return the next square if sq if a perfect square, -1 otherwise
     let tmp = Math.sqrt(sq);
-    if (tmp % 1 === 0){
-        return (tmp+1) ** 2;
+    return tmp % 1 === 0 ?  (tmp+1) ** 2 : -1;
+}
+
+function getMiddle(s)
+{
+    if (s.length % 2 === 0){
+        return s[~~((s.length - 1) / 2)] + s[~~((s.length - 1) / 2) + 1]
+    } else {
+        return s[(~~(s.length - 1)) / 2]
     }
-    return -1;
 }
 
