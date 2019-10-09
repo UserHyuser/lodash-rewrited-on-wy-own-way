@@ -81,6 +81,7 @@ var uniqueInOrder=function(iterable){
     return out;
 };
 // console.log(uniqueInOrder('AAAABBBCCDAABBB'))
+
 /*In this kata you need to check the provided array (x) for good ideas 'good' and bad ideas 'bad'.
 If there are one or two good ideas, return 'Publish!', if there are more than 2 return 'I smell a series!'.
 If there are no good ideas, as is often the case, return 'Fail!'.*/
@@ -96,5 +97,17 @@ function well(x){
       }
     }
     return out.good >= 1 ? 'Publish!' : 'Fail!'
+}
+
+/*Complete the findNextSquare method that finds the next integral perfect square after the one passed as a parameter.
+Recall that an integral perfect square is an integer n such that sqrt(n) is also an integer.
+If the parameter is itself not a perfect square, than -1 should be returned. You may assume the parameter is positive.*/
+function findNextSquare(sq) {
+    // Return the next square if sq if a perfect square, -1 otherwise
+    let tmp = Math.sqrt(sq);
+    if (tmp % 1 === 0){
+        return (tmp+1) ** 2;
+    }
+    return -1;
 }
 
