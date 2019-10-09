@@ -170,4 +170,19 @@ function findOutlier(integers) {
         if (Math.abs(integers[i] % 2) !== count) return integers[i];
     }
 }
-// console.log(findOutlier([39982520, 27159825,-198404595,-108850805,75431755,125911243,-7376889,-68448241,82721157]));
+// console.log(findOutlier([-39982520, 27159825,-198404595,-108850805,75431755,125911243,-7376889,-68448241,82721157]));
+
+function getW(height) {
+    if (height > 1){
+        let w = Array.of(height);
+        for (let i = 0; i < height; i++){
+            w[i] = ' '.repeat(i) + '*';
+            w[i] += height - i === 1 ? ' '.repeat(i) : ' '.repeat(2*(height - i) - 3) + '*' + ' '.repeat(i);
+            w[i] += i !== 0 ? ' '.repeat(i - 1) + '*' : '';
+            w[i] += height - i === 1 ? ' '.repeat(i) : ' '.repeat(2*(height - i) - 3) + '*' + ' '.repeat(i);
+        }
+        return w;
+    }
+    else return [];
+}
+console.log(getW(2))
