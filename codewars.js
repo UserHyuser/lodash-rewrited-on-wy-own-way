@@ -43,7 +43,7 @@ function GetSum( a,b )
         return out + min;
     }
 }
-console.log(GetSum(0, 1));
+// console.log(GetSum(0, 1));
 
 function noSpace(str) {
     return str.split(' ').join('')
@@ -159,4 +159,15 @@ function validParentheses(parens) {
     }
     return opened === closed;
 }
-console.log(validParentheses("())(()"));
+// console.log(validParentheses("())(()"));
+/*You are given an array (which will have a length of at least 3, but could be very large) containing integers.
+    The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N.
+    Write a method that takes the array as an argument and returns this "outlier" N.*/
+function findOutlier(integers) {
+    let count = (Math.abs(integers[0] % 2) + Math.abs(integers[1] % 2) + Math.abs(integers[2] % 2)) >= 2 ? 1 : 0;
+    console.log(count);
+    for (let i = 0; i < integers.length; i++) {
+        if (Math.abs(integers[i] % 2) !== count) return integers[i];
+    }
+}
+// console.log(findOutlier([39982520, 27159825,-198404595,-108850805,75431755,125911243,-7376889,-68448241,82721157]));
