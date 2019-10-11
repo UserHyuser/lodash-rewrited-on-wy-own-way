@@ -208,3 +208,14 @@ function letterCount(s){
     return out;
 }
 // console.log(letterCount('asdgfrreewwdsad'))
+
+/*Your objective is to complete a function createSpiral(N) that receives an integer N and returns an NxN
+two-dimensional array with numbers 1 through N^2 represented as a clockwise spiral.*/
+function createSpiral(N) {
+    let array = new Array(N);
+    for (let i = 0; i < N; i++){
+        array[i] = new Array(N);
+    }
+    return array;
+}
+console.log(createSpiral(4))
