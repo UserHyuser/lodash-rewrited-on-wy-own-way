@@ -199,3 +199,12 @@ function squaresNeeded(grains){
     while (grains > 0) { grains = grains - 2 ** (deg); deg++; }
     return deg;
 }
+
+function letterCount(s){
+    let out = {};
+    for (let i = 0; i < s.length; i++){
+        !out[s[i]] ? out[s[i]] = 1 : out[s[i]]++;
+    }
+    return out;
+}
+// console.log(letterCount('asdgfrreewwdsad'))
