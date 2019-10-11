@@ -212,10 +212,102 @@ function letterCount(s){
 /*Your objective is to complete a function createSpiral(N) that receives an integer N and returns an NxN
 two-dimensional array with numbers 1 through N^2 represented as a clockwise spiral.*/
 function createSpiral(N) {
-    let array = new Array(N);
+    if (N < 1 || parseInt(N) !== N){
+        return [];
+    }
+    let array = [];
     for (let i = 0; i < N; i++){
-        array[i] = new Array(N);
+        array[i] = [];
+    }
+    let help = { // Объект, чтобы передавать в функцию по ссылке
+      i : 1,
+      shift : N,
+      row : {
+          row : 0,
+          next() {
+              switch (help.steps % 4) {
+                  case 1 : {
+                      help.row.row++;
+                      break;
+                  }
+                  case 2 : {
+                      break;
+                  }
+                  case 3 :{
+                      help.row.row--;
+                      break;
+                  }
+                  case 0 :{
+                      break;
+                  }
+              }
+          },
+      },
+      column : {
+          column : 0,
+          next() {
+              switch (help.steps % 4) {
+                  case 1 : {
+                      break;
+                  }
+                  case 2 : {
+                      help.column.column--;
+                      break;
+                  }
+                  case 3 : {
+                      break;
+                  }
+                  case 0 : {
+                      help.column.column++;
+                      break;
+                  }
+              }
+          },
+      },
+      steps: 0,
+    };
+
+    while (help.i <= N**2){ //
+        gorisontalInput(help, array);
+        verticalInput(help, array)
     }
     return array;
 }
-console.log(createSpiral(4))
+// console.log(createSpiral(4));
+
+function gorisontalInput(help, array) {
+    if(help.steps % 4 > 1){
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.column.column--;
+        }
+        help.column.column++;
+    } else{
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.column.column++;
+        }
+        help.column.column--;
+    }
+    help.steps++;
+    help.row.next();
+}
+
+function verticalInput(help, array) {
+    help.shift--;
+    if(help.steps % 4 > 1) {
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.row.row--;
+        }
+        help.row.row++;
+    } else {
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.row.row++;
+        }
+        help.row.row--;
+    }
+    help.steps++;
+    help.column.next();
+}
