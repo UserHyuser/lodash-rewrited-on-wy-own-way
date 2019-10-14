@@ -311,3 +311,30 @@ function verticalInput(help, array) {
     help.steps++;
     help.column.next();
 }
+
+//In this kata you need to build a function to return either true/True or
+// false/False if a string can be seen as the repetition of a simpler/shorter subpattern or not.
+
+function hasSubpattern(string) {
+    for (let i = 0; i < string.length / 2; i++) {
+        let out = string.slice(0, i + 1);
+        let strTmp = string.slice(i + 1, i + 1 + out.length);
+        if (out === strTmp) {
+            let check = 0;
+            for (let j = 0; j < (string.length / strTmp.length); j++) {
+                strTmp = string.slice((strTmp.length * j), (strTmp.length * (j + 1)));
+                if (out === strTmp) {
+                } else {
+                    check = 1;
+                    break
+                }
+            }
+            if (check === 0) {
+                return true
+            }
+        }
+    }
+    return false;
+}
+
+//console.log(hasSubpattern("aaaa"));
