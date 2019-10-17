@@ -393,3 +393,8 @@ function incrementString (string) {
     return string.slice(0, (string.length - tmp.length)) + numeric;
 }
 // console.log(incrementString('dsdfgh009'))
+
+function rgb(r, g, b){
+    console.log(r.toString('hex'))
+}
+console.log(rgb(255,255,255))
