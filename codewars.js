@@ -123,7 +123,7 @@ Spaces will be included only when more than one word is present.*/
 function spinWords(str){
     str = str.split(' ');
     let out = [];
-    str.forEach(function (item, i, str) {
+    str.forEach(function (item) {
         if(item.length >= 5){
             let tmp = '';
             for (let j = item.length - 1; j >= 0; j--){
@@ -140,13 +140,13 @@ function spinWords(str){
 /*
 *Write a function that takes an integer as input, and returns the number of bits that are equal to one in the binary representation of that number.
 You can guarantee that input is non-negative. */
-var countBits = function(n) {
+const countBits = function (n) {
     let out = 0;
-    while (n){
+    while (n) {
         if (n % 2 === 1) {
             out++;
         }
-        n = ~~(n/2)
+        n = ~~(n / 2)
     }
     return out;
 };
@@ -338,3 +338,50 @@ function hasSubpattern(string) {
 }
 
 //console.log(hasSubpattern("aaaa"));
+
+// Найти максимальную по сумме подпоследовательность в массиве
+var maxSequence = function (arr) {
+    let maxSeq = [], result = [], seq = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (seq + arr[i] < 0) {
+            if (seq >= 0) result.push(seq);
+            seq = 0; maxSeq = [];
+        } else if (seq + arr[i] < seq) {
+            let tmpSeq = seq, tmpMaxSeq = maxSeq.slice();
+            while (arr[i] <= 0) {
+                tmpSeq += arr[i]; tmpMaxSeq.push(arr[i]);
+                i++;
+            }
+            if (tmpSeq + arr[i] > arr[i]) {
+                result.push(seq);
+                seq = tmpSeq; maxSeq = tmpMaxSeq.slice();
+            } else {
+                result.push(seq);
+                seq = 0; maxSeq = []
+            }
+            i--;
+        } else {
+            seq += arr[i]; maxSeq.push(arr[i]);
+        }
+    }
+    if (seq >= 0) result.push(seq);
+    return Math.max.apply(null, result) === -Infinity ? [] : Math.max.apply(null, result);
+};
+/*
+console.time('s');
+console.log(maxSequence([ 11, 13, -35, 17, 17, -26, -18, 19, 32, 42, -10000, 46 ]))
+console.timeEnd('s')
+
+var maxSequence2 = function(arr){ // not mine :(
+    var min = 0, ans = 0, i, sum = 0;
+    for (i = 0; i < arr.length; ++i) {
+        sum += arr[i];
+        min = Math.min(sum, min);
+        ans = Math.max(ans, sum - min);
+        console.log({sum, min, ans})
+    }
+    return ans;
+};
+console.time('s');
+console.log(maxSequence2([ 11, 13, -35, 17, 17, -26, -18, 19, 32, 42, -10000, 46 ]))
+console.timeEnd('s');*/
