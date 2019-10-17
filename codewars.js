@@ -395,6 +395,6 @@ function incrementString (string) {
 // console.log(incrementString('dsdfgh009'))
 
 function rgb(r, g, b){
-    console.log(r.toString('hex'))
+    return r.toString(16) + g.toString(16) + b.toString(16)
 }
-console.log(rgb(255,255,255))
+console.log(rgb(0,255,255))
