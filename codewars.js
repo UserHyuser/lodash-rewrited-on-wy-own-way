@@ -385,3 +385,11 @@ var maxSequence2 = function(arr){ // not mine :(
 console.time('s');
 console.log(maxSequence2([ 11, 13, -35, 17, 17, -26, -18, 19, 32, 42, -10000, 46 ]))
 console.timeEnd('s');*/
+
+function incrementString (string) {
+    let tmp = string.replace(/\D+/g,"");
+    let numeric = (Number(tmp) + 1).toString();
+    if (numeric.length < tmp.length) {numeric = numeric.padStart(tmp.length,'0')}
+    return string.slice(0, (string.length - tmp.length)) + numeric;
+}
+// console.log(incrementString('dsdfgh009'))
