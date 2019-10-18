@@ -410,14 +410,19 @@ function domainName(url){
     return url[0] === 'www' ? url[1]: url[0];
 }
 
-function domainName2(url){
-    url = url.replace("https://", '');
-    url = url.replace("http://", '');
-    url = url.replace("www.", '');
-    return url.split('.')[0];
-};
-let hrstart = process.hrtime();
+/*let hrstart = process.hrtime(); // Замер времени
 domainName('www.xakep.ru');
-//domainName2('www.xakep.ru');
-console.log(process.hrtime(hrstart))
+console.log(process.hrtime(hrstart));*/
 
+function zeros (n) {
+    let out = 0, iter = 1, tmp = 1;
+    while (tmp){
+        tmp = ~~(n/(5 ** iter));
+        out += tmp;
+        iter++;
+    }
+    return out // Делить на степень пятерки пока можно
+}
+let hrstart = process.hrtime()
+console.log(zeros(100));
+console.log(process.hrtime(hrstart));
