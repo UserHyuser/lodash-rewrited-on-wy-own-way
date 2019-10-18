@@ -447,4 +447,18 @@ function solution(list) {
     }
     return out.join(',')
 }
-console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]));
+//console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]));
+
+const Calculator = function() {
+    this.evaluate = string => {
+        // do code here
+    }
+};
+
+var calculate = new Calculator();
+console.log(calculate.evaluate());
+
+function replaceVogals(str) {
+    return str.replace(/[aoei]/g, '?');
+}
+console.log(replaceVogals('lorem'));
