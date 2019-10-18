@@ -423,6 +423,28 @@ function zeros (n) {
     }
     return out // Делить на степень пятерки пока можно
 }
-let hrstart = process.hrtime()
-console.log(zeros(100));
-console.log(process.hrtime(hrstart));
+/*let hrstart = process.hrtime()
+console.log(zeros(34));
+console.log(process.hrtime(hrstart));*/
+
+//
+function solution(list) {
+    let out = [];
+    for (let i = 1; i <= list.length; i++) {
+        if (list[i] === list[i - 1] + 1) {
+            let st = list[i - 1];
+            while (list[i] === list[i - 1] + 1) {
+                i++;
+            }
+            if (list[i - 3] === list[i - 2] - 1 && list[i - 2] + 1 === list[i - 1]) {
+                out.push(st + '-' + list[i - 1]);
+            } else {
+                out.push(list[i - 2], list[i - 1])
+            }
+        } else {
+            out.push(list[i - 1])
+        }
+    }
+    return out.join(',')
+}
+console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]));
