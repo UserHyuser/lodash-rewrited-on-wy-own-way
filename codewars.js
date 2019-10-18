@@ -395,11 +395,29 @@ function incrementString (string) {
 // console.log(incrementString('dsdfgh009'))
 
 function rgb(r, g, b){
-    for (let i = 0; i < arguments.length; i++){
-        if (arguments[i] < 0){
-            arguments[i] = 0;
-        }else if(arguments[i] > 255) {arguments[i] = 255}
-    }
+	for (let argumentsKey in arguments) {
+		if (arguments[argumentsKey] < 0) {arguments[argumentsKey] = 0;} else if(arguments[argumentsKey] > 255) {arguments[argumentsKey] = 255}
+	}
     return (0 + r.toString(16)).slice(-2).toUpperCase() + (0 + g.toString(16)).slice(-2).toUpperCase() + (0 + b.toString(16)).slice(-2).toUpperCase();
 }
-console.log(rgb(300,0,-20))
+//console.log(rgb(300,0,-20))
+
+function domainName(url){
+    if (url.indexOf('//') !== -1){
+        url = url.slice(url.indexOf('//') + 2)
+    }
+    url = url.split('.');
+    return url[0] === 'www' ? url[1]: url[0];
+}
+
+function domainName2(url){
+    url = url.replace("https://", '');
+    url = url.replace("http://", '');
+    url = url.replace("www.", '');
+    return url.split('.')[0];
+};
+let hrstart = process.hrtime();
+domainName('www.xakep.ru');
+//domainName2('www.xakep.ru');
+console.log(process.hrtime(hrstart))
+
