@@ -451,14 +451,36 @@ function solution(list) {
 
 const Calculator = function() {
     this.evaluate = string => {
-        // do code here
+        // this.evaluate = s => (function*(){}).constructor('yield '+s)().next().value; - решение в одну строку
+        return string.value;
     }
 };
 
 var calculate = new Calculator();
-console.log(calculate.evaluate());
+//console.log(calculate.evaluate('127'));
 
 function replaceVogals(str) {
-    return str.replace(/[aoei]/g, '?');
+    return str.replace(/[aouei]/g, '?');
 }
-console.log(replaceVogals('lorem'));
+//console.log(replaceVogals('lorem'));
+
+function flatten() {
+    let out = [];
+
+    function doFlat(arguments) {
+        console.log(arguments);
+        for (let index in arguments) {
+            if (Array.isArray(arguments[index])) {
+                doFlat(arguments[index])
+            } else {
+                out.push(arguments[index])
+            }
+        }
+        return out
+    }
+
+    return doFlat(arguments)
+}
+
+
+console.log(flatten('a', ['b', 2], 3, null, [[4], ['c']]));
