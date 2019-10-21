@@ -468,7 +468,6 @@ function flatten() {
     let out = [];
 
     function doFlat(arguments) {
-        console.log(arguments);
         for (let index in arguments) {
             if (Array.isArray(arguments[index])) {
                 doFlat(arguments[index])
@@ -481,6 +480,18 @@ function flatten() {
 
     return doFlat(arguments)
 }
+//console.log(flatten('a', ['b', 2], 3, null, [[4], ['c']]));
 
+// perfect Power
+var isPP = function(n){
+    let tmp;
+    for (let i = 2; i <= ~~(Math.sqrt(n)); i++){
+        tmp = Math.round(Math.log(n) / Math.log(i));
+        if (i ** (tmp) === n){
+            return [i, tmp]
+        }
+    }
+    return null
+};
+//console.log(isPP(7056));
 
-console.log(flatten('a', ['b', 2], 3, null, [[4], ['c']]));
