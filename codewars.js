@@ -209,109 +209,6 @@ function letterCount(s){
 }
 // console.log(letterCount('asdgfrreewwdsad'))
 
-/*Your objective is to complete a function createSpiral(N) that receives an integer N and returns an NxN
-two-dimensional array with numbers 1 through N^2 represented as a clockwise spiral.*/
-function createSpiral(N) {
-    if (N < 1 || parseInt(N) !== N){
-        return [];
-    }
-    let array = [];
-    for (let i = 0; i < N; i++){
-        array[i] = [];
-    }
-    let help = { // Объект, чтобы передавать в функцию по ссылке
-      i : 1,
-      shift : N,
-      row : {
-          row : 0,
-          next() {
-              switch (help.steps % 4) {
-                  case 1 : {
-                      help.row.row++;
-                      break;
-                  }
-                  case 2 : {
-                      break;
-                  }
-                  case 3 :{
-                      help.row.row--;
-                      break;
-                  }
-                  case 0 :{
-                      break;
-                  }
-              }
-          },
-      },
-      column : {
-          column : 0,
-          next() {
-              switch (help.steps % 4) {
-                  case 1 : {
-                      break;
-                  }
-                  case 2 : {
-                      help.column.column--;
-                      break;
-                  }
-                  case 3 : {
-                      break;
-                  }
-                  case 0 : {
-                      help.column.column++;
-                      break;
-                  }
-              }
-          },
-      },
-      steps: 0,
-    };
-
-    while (help.i <= N**2){ //
-        gorisontalInput(help, array);
-        verticalInput(help, array)
-    }
-    return array;
-}
-// console.log(createSpiral(4));
-
-function gorisontalInput(help, array) {
-    if(help.steps % 4 > 1){
-        for (let i = 0; i < help.shift; i++){
-            array[help.row.row][help.column.column] = help.i;
-            help.i++; help.column.column--;
-        }
-        help.column.column++;
-    } else{
-        for (let i = 0; i < help.shift; i++){
-            array[help.row.row][help.column.column] = help.i;
-            help.i++; help.column.column++;
-        }
-        help.column.column--;
-    }
-    help.steps++;
-    help.row.next();
-}
-
-function verticalInput(help, array) {
-    help.shift--;
-    if(help.steps % 4 > 1) {
-        for (let i = 0; i < help.shift; i++){
-            array[help.row.row][help.column.column] = help.i;
-            help.i++; help.row.row--;
-        }
-        help.row.row++;
-    } else {
-        for (let i = 0; i < help.shift; i++){
-            array[help.row.row][help.column.column] = help.i;
-            help.i++; help.row.row++;
-        }
-        help.row.row--;
-    }
-    help.steps++;
-    help.column.next();
-}
-
 //In this kata you need to build a function to return either true/True or
 // false/False if a string can be seen as the repetition of a simpler/shorter subpattern or not.
 
@@ -483,11 +380,11 @@ function flatten() {
 //console.log(flatten('a', ['b', 2], 3, null, [[4], ['c']]));
 
 // perfect Power
-var isPP = function(n){
+const isPP = function (n) {
     let tmp;
-    for (let i = 2; i <= ~~(Math.sqrt(n)); i++){
+    for (let i = 2; i <= ~~(Math.sqrt(n)); i++) {
         tmp = Math.round(Math.log(n) / Math.log(i));
-        if (i ** (tmp) === n){
+        if (i ** (tmp) === n) {
             return [i, tmp]
         }
     }
@@ -495,3 +392,143 @@ var isPP = function(n){
 };
 //console.log(isPP(7056));
 
+/*Your objective is to complete a function createSpiral(N) that receives an integer N and returns an NxN
+two-dimensional array with numbers 1 through N^2 represented as a clockwise spiral.*/
+function createSpiral(N) {
+    if (N < 1 || parseInt(N) !== N){
+        return [];
+    }
+    let array = [];
+    for (let i = 0; i < N; i++){
+        array[i] = [];
+    }
+    let help = { // Объект, чтобы передавать в функцию по ссылке
+        i : 1,
+        shift : N,
+        row : {
+            row : 0,
+            next() {
+                switch (help.steps % 4) {
+                    case 1 : {
+                        help.row.row++;
+                        break;
+                    }
+                    case 2 : {
+                        break;
+                    }
+                    case 3 :{
+                        help.row.row--;
+                        break;
+                    }
+                    case 0 :{
+                        break;
+                    }
+                }
+            },
+        },
+        column : {
+            column : 0,
+            next() {
+                switch (help.steps % 4) {
+                    case 1 : {
+                        break;
+                    }
+                    case 2 : {
+                        help.column.column--;
+                        break;
+                    }
+                    case 3 : {
+                        break;
+                    }
+                    case 0 : {
+                        help.column.column++;
+                        break;
+                    }
+                }
+            },
+        },
+        steps: 0,
+    };
+
+    while (help.i <= N**2){ //
+        gorisontalInput(help, array);
+        verticalInput(help, array)
+    }
+    return array;
+}
+// console.log(createSpiral(4));
+
+function gorisontalInput(help, array) {
+    if(help.steps % 4 > 1){
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.column.column--;
+        }
+        help.column.column++;
+    } else{
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.column.column++;
+        }
+        help.column.column--;
+    }
+    help.steps++;
+    help.row.next();
+}
+
+function verticalInput(help, array) {
+    help.shift--;
+    if(help.steps % 4 > 1) {
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.row.row--;
+        }
+        help.row.row++;
+    } else {
+        for (let i = 0; i < help.shift; i++){
+            array[help.row.row][help.column.column] = help.i;
+            help.i++; help.row.row++;
+        }
+        help.row.row--;
+    }
+    help.steps++;
+    help.column.next();
+}
+
+snail = function(array) {
+    if (!array[0][0]){ return [] }
+    let n = array.length, out = [];
+    for (let i = 0, x = 0, y = 0; i < n * n;) {
+        while (y < n && array[x][y] !== 0) {
+            out.push(array[x][y]);
+            array[x][y] = 0;
+            y++; i++;
+        }
+        y--; x++;
+
+        while (x < n && array[x][y] !== 0) {
+            out.push(array[x][y]);
+            array[x][y] = 0;
+            x++; i++;
+        }
+        x--; y--;
+        while (y >= 0 && array[x][y] !== 0) {
+            out.push(array[x][y]);
+            array[x][y] = 0;
+            y--; i++;
+        }
+        y++; x--;
+        while (x > 0 && array[x][y] !== 0) {
+            out.push(array[x][y]);
+            array[x][y] = 0;
+            x--; i++;
+        }
+        x++; y++;
+    }
+    return out
+};
+
+/*console.log(snail([[1,2,3,4],
+                        [5,6,7,8],
+                        [9,10,11,12],
+                        [13,14,15,16]]))*/
