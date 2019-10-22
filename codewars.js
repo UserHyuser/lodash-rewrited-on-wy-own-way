@@ -532,3 +532,34 @@ snail = function(array) {
                         [5,6,7,8],
                         [9,10,11,12],
                         [13,14,15,16]]))*/
+
+function sumIntervals(intervals) {
+    let sum = 0;
+    intervals = intervals.sort(sortFunction);
+
+    function sortFunction(a, b) { // Сортировка по первому столбцу
+        if (a[0] === b[0]) {
+            return 0;
+        } else {
+            return (a[0] < b[0]) ? -1 : 1;
+        }
+    }
+
+    sum += intervals[0][1] - intervals[0][0];
+    let max = intervals[0][1];
+    for (let key = 1; key < intervals.length; key++) {
+        if (intervals[key][1] <= max) {
+            // nothing
+        } else if (intervals[key][1] >= intervals[key - 1][1] && intervals[key][0] <= intervals[key - 1][1]) {
+            sum += intervals[key][1] - intervals[key - 1][1];
+            max = intervals[key][1];
+        } else {
+            sum += intervals[key][1] - intervals[key][0];
+            max = intervals[key][1];
+        }
+    }
+    return sum;
+}
+/*console.log(sumIntervals( [
+    [ 1, 20 ], [ 1, 6 ], [ 5, 11 ], [ 10, 20 ], [ 16, 19 ]
+] ));*/
