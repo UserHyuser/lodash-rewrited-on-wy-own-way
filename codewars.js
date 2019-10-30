@@ -685,4 +685,42 @@ function wave(str) {
     return out
 }
 
-
+const enterMessage = message => {
+    let keyboard = {
+        1: '.,?!',
+        2: 'abc',
+        3: 'def',
+        4: 'ghi',
+        5: 'jkl',
+        6: 'mno',
+        7: 'pqrs',
+        8: 'tuv',
+        9: 'wxyz',
+        '*': `-+=`,
+        0: ' ',
+        '#': '',
+        ' ': '',
+    }
+    let count = 0, out = '', ucase = 0;
+    // Start typing here
+    for (let i = 0; i < message.length ; i++) {
+        if (message[i] === '0') {
+            out += " ";
+            continue
+        } else if (message[i] === '#') {
+            ucase++; continue
+        } else if (message[i] === message[i + 1]) {
+            count++;
+            continue
+        } else if (message[i + 1] === '-'){
+            out += message[i]; i++; continue
+        } else if (message[i] === ' '){
+            continue
+        }
+        //console.log({ucase,c: message[i], b: keyboard[message[i]][count], count, i})
+        ucase % 2 !== 0 ? out += keyboard[message[i]][count].toString().toUpperCase() : out += keyboard[message[i]][count];
+        count = 0;
+    }
+    return out;
+};
+console.log(enterMessage(' 1 76*335606789848266'));
