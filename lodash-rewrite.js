@@ -67,4 +67,4 @@ function capitalize(str){
     return str.length ? str[0].toUpperCase() + str.slice(1) : '';
 }
 
-// console.log(capitalize(''), _.capitalize('hel'))
+ console.log(capitalize('55'), _.capitalize('5'))
