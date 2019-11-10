@@ -62,3 +62,9 @@ function dropRight(arr, n) {
 /*console.log(_.dropRight([1, 2, 3], 5));
 console.log(dropRight([1, 2, 3], 5));*/
 
+// Capitalize first letter
+function capitalize(str){
+    return str[0].toUpperCase() + str.slice(1)
+}
+
+console.log(capitalize('hellow'))

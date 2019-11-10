@@ -702,25 +702,32 @@ const enterMessage = message => {
         ' ': '',
     }
     let count = 0, out = '', ucase = 0;
-    // Start typing here
-    for (let i = 0; i < message.length ; i++) {
-        if (message[i] === '0') {
-            out += " ";
+    for (let i = 0; i < message.length; i++) {
+        if (message[i] === '#') {
+            ucase++;
             continue
-        } else if (message[i] === '#') {
-            ucase++; continue
+        } else if (message[i] === ' ') {
+            continue
+        } else if (message[i + 1] === '-') {
+            out += message[i];
+            i++;
+            continue
         } else if (message[i] === message[i + 1]) {
             count++;
             continue
-        } else if (message[i + 1] === '-'){
-            out += message[i]; i++; continue
-        } else if (message[i] === ' '){
+        }
+        if (message[i] === '0') {
+            if (count % 2 === 1) {
+                out += '0';
+            } else out += " ";
+            count = 0;
             continue
         }
-        //console.log({ucase,c: message[i], b: keyboard[message[i]][count], count, i})
-        ucase % 2 !== 0 ? out += keyboard[message[i]][count].toString().toUpperCase() : out += keyboard[message[i]][count];
+
+        count %= keyboard[message[i]].length;
+        ucase % 2 !== 0 ? out += keyboard[message[i]][count].toUpperCase() : out += keyboard[message[i]][count];
         count = 0;
     }
     return out;
 };
-console.log(enterMessage(' 1 76*335606789848266'));
+console.log(enterMessage('0000000000000000000-'));
