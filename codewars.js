@@ -730,4 +730,25 @@ const enterMessage = message => {
     }
     return out;
 };
-console.log(enterMessage('0000000000000000000-'));
+// console.log(enterMessage('0000000000000000000-'));
+
+/*There is a queue for the self-checkout tills at the supermarket.
+* Your task is write a function to calculate the total time required for all the customers to check out!*/
+function queueTime(customers, n) {
+    if(!customers.length) return 0;
+    let out = 0;
+    let tmpArr = customers.splice(0,n);
+
+    while(customers.length){
+        tmpArr.forEach(function (value, index) {
+            tmpArr[index] = value - 1;
+            if (value - 1 === 0){
+                tmpArr[index] = customers.splice(0,1)[0] || 0;
+            }
+        });
+        out++;
+    }
+    return out + Math.max.apply(null,tmpArr)
+}
+
+// console.log(queueTime([201,201,201,201,201,201,201,201,201,201,201,201,201,201,201,201,201], 6));
